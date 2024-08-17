@@ -1,12 +1,11 @@
-// Import Components
-import { Editor } from '@/components/editor/Editor'
-import Header from '@/components/Header'
-
-// Import Components from Clerk
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import CollaborativeRoom from '@/components/CollaborativeRoom'
 
 const Document = () => {
-   return <div></div>
+   return (
+      <main className='flex w-full flex-col items-center'>
+         <CollaborativeRoom />
+      </main>
+   )
 }
 
 export default Document

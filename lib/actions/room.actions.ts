@@ -1,7 +1,11 @@
+'use server'
+
 import {nanoid} from 'nanoid'
 import { liveblocks } from '../liveblocks';
+import { revalidatePath } from 'next/cache';
+import { parseStringify } from '../utils';
 
-export const createDocument = async({userId, email} : createDocumentParams) => {
+export const createDocument = async({userId, email} : CreateDocumentParams) => {
   const roomId = nanoid()
 
   try {
@@ -11,7 +15,7 @@ export const createDocument = async({userId, email} : createDocumentParams) => {
       title: 'Untitled'
     }
 
-    const userAccesses: RoomAccesses = {
+    const usersAccesses: RoomAccesses = {
       [email]: ['room:write']
     }
 
@@ -20,6 +24,11 @@ export const createDocument = async({userId, email} : createDocumentParams) => {
       usersAccesses,
       defaultAccesses: []
     });
+
+    revalidatePath('/')
+
+    return parseStringify(room)
+
   } catch (error) {
     console.log(`Error happened while creating a room: ${error}`);
   }
