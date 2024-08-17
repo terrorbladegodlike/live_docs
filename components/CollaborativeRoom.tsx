@@ -2,6 +2,13 @@
 // Import Components from LiveBlocks
 import { ClientSideSuspense, RoomProvider } from '@liveblocks/react/suspense'
 
+// Import Components
+import Header from './Header'
+
+// Import Components from Clerk
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import { Editor } from './editor/Editor'
+
 const CollaborativeRoom = () => {
    return (
       <RoomProvider id='my-room'>
