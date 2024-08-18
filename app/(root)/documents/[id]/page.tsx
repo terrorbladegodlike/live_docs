@@ -1,6 +1,13 @@
+// import Components
 import CollaborativeRoom from '@/components/CollaborativeRoom'
+
+// Import Actions
 import { getDocument } from '@/lib/actions/room.actions'
+
+// Import Clerk Components
 import { currentUser } from '@clerk/nextjs/server'
+
+// Import Redirect from Next
 import { redirect } from 'next/navigation'
 
 const Document = async ({ params: { id } }: SearchParamProps) => {
