@@ -27,6 +27,7 @@ import Image from 'next/image'
 // Import Components
 import UserTypeSelector from './UserTypeSelector'
 import Collaborator from './Collaborator'
+import { updateDocumentAccess } from '@/lib/actions/room.actions'
 
 const ShareModal = ({
    roomId,
@@ -42,7 +43,18 @@ const ShareModal = ({
    const [email, setEmail] = useState('')
    const [userType, setUserType] = useState<UserType>('viewer')
 
-   const shareDocumentHandler = async () => {}
+   const shareDocumentHandler = async (type: string) => {
+      setLoading(true)
+
+      await updateDocumentAccess({
+         roomId,
+         email,
+         userType: userType as UserType,
+         updatedBy: user.info,
+      })
+
+      setLoading(false)
+   }
 
    return (
       <Dialog open={open} onOpenChange={setOpen}>
